@@ -1,8 +1,9 @@
-bkgrdImg1{
-    background-image: url();
-
+h1 {
+    font-family: 'Faster One', cursive;
 }
-bkgrdImg1{
-    background-image: url();
-
+th {
+    font-family: 'Carter One', cursive;
+}
+*{ 
+    font-family: 'Black Ops One', cursive;
 }

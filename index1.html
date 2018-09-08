@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Swayze Express</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Carter+One|Faster+One" rel="stylesheet">
+<!-- font awesome -->
+
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<!-- bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- Added Moment JS -->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<!-- css added -->
+<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+</head>
+<body>
+<!-- background image swazy express from TPB -->
+<div class ="background"></div>
+
+<!-- jumbotron header -->
+<div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">The Swayze Express Station </h1>
+            <p class="lead"> (a tribute to "Trailor Park Boys")</p>
+            <p class="lead">Find your train below or input your information to see live update!</p>
+            
+        </div>
+</div>
+
+    <!-- table body -->
+<table class="table table-dark">
+    <thead>
+        <tr>
+        <th scope="col">TRAIN NAME</th>
+        <th scope="col">DESTINATION</th>
+        <th scope="col">FREQUENCY (mins)</th>
+        <th scope="col">Next Arrival</th>
+        <th scope="col">MINUTES AWAY</th>
+        </tr>
+    </thead>
+<tbody>
+    <tr scope="row" >
+        <td class= "name"></td>
+        <td class = "dest"></td>
+        <td class ="freq"></td>
+        <td class = "fTrain"></td>  
+        <td class ="minAway"></td>    
+    </tr>
+</tbody>
+</table>
+    <!-- input form -->
+<form>
+    <!-- train name -->
+    <div class="form-group">
+        <label for="trainName">Train Name:</label>
+        <input type="text" class="form-control" id="nameInput"  placeholder="Name of Train">
+    </div>
+    <!-- destionation -->
+    <div class="form-group">
+        <label for="destination">Your Destination:</label>
+        <input type="text" class="form-control" id="destinationInput"  placeholder="Durham">
+        </div>
+  <!-- First Train -->
+  <div class="form-group">
+        <label for="destination">First Train Time (HH:mm - military time):</label>
+        <input type="text" class="form-control" id="firstTrainInput"  placeholder="Durham">
+        </div>
+    <!-- frequency -->
+    <div class="form-group">
+        <label for="destination">The Frequency of Your Train (min):</label>
+        <input type="text" class="form-control" id="frequencyInput"  placeholder="30 or 15">
+        </div>
+        <!-- select button -->
+        <button type="submit" class="btn btn-dark submit">Quiry Your Search:</button>
+    </form>
+  
+    <script src="assets/script2.js"></script>
+</body>
+</html>
