@@ -37,34 +37,28 @@
     console.log(newTrain);
   });
 //best practice to put outside the onclick
-  database.ref().on("child_added", function(snapshot, previous){
-    console.log(snapshot.val());
-    console.log(snapshot.val().train);
-    console.log(snapshot.val().destination);
-    console.log(snapshot.val().frequency);
-    console.log(snapshot.val().firstTrain);
+  database.ref().on("child_added", function(childSnapshot){
+    console.log(childSnapshot.val());
+    console.log(childSnapshot.val().train);
+    console.log(childSnapshot.val().destination);
+    console.log(childSnapshot.val().frequency);
+    console.log(childSnapshot.val().firstTrain);
+
+    //sending the to the time from this var ... it works... let it be
+    var appendTime = Time(childSnapshot.val().firstTrain, childSnapshot.val().frequency);
+
 
     //attempted to mimic the full member list style on activity recent users with all users (line 155)
-        // $("#fullActiveTrainList").append("<div > <tr scope='row'> <td class='name'></td>" +
-        // childSnapshot.val().train + "<td class='dest'></td>" + 
-        // childSnapshot.val().destination + "<td class='freq'></td>" + 
-        // childSnapshot.val().frequency + "<td class='fTrain'></td>" + 
-        // childSnapshot.val().firstTrain + "</tr></div>");
-    
-    //not currently being appended to the last entry, it is taking it's place on teh screen
-    $(".name").text(snapshot.val().train);
-    $(".dest").text(snapshot.val().destination);
-    $(".freq").text(snapshot.val().frequency);
-    $(".fTrain").text(snapshot.val().firstTrain);
-
-    //calling Time function inside the database.ref()
-    Time(snapshot.val().firstTrain, snapshot.val().frequency);
+     $(".pastTrainData").append("<tr><td>" + childSnapshot.val().train + "</td>" +
+        "<td>" + childSnapshot.val().destination + "</td>" + 
+        "<td>" + childSnapshot.val().frequency + "</td>" + 
+        "<td>" + childSnapshot.val().firstTrain + "</td>" + 
+        "<td>" + appendTime + "</td></tr>");
 }, 
 //added errorObject function just in case something goes wonky
 function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
-
 
 function Time(firstTime, tFrequency){
     // First Time (pushed back 1 year to make sure it comes before current time)
@@ -73,7 +67,7 @@ function Time(firstTime, tFrequency){
 
     // Current Time
     var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
         $(".currentTime").text(currentTime);//not sure if I would need to display this so I made it a text if needed
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
@@ -87,8 +81,10 @@ function Time(firstTime, tFrequency){
     var tMinutesTillTrain = tFrequency - tRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
      //placing on html
-        $(".minAway").text(tMinutesTillTrain);
+        // $(".minAway").text(tMinutesTillTrain);
+        return tMinutesTillTrain;
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 };
+
